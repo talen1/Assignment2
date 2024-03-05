@@ -1,5 +1,3 @@
-This README outlines the project structure and instructions for compiling and running the C++ programs that demonstrate the functionality of a custom stack using a vector and a single linked list.
-
 Project Files
 Stack.h: Header file for the Stack class.
 Stack.cpp: Implementation file for the Stack class.
