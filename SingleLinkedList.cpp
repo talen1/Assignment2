@@ -20,7 +20,6 @@ void Single_Linked_List<Item_Type>::clear() {
     num_items = 0;
 }
 
-// Implement other member functions here
 
 template <typename Item_Type>
 void Single_Linked_List<Item_Type>::push_front(const Item_Type& item) {
