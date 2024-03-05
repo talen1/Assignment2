@@ -1,34 +1,44 @@
-#include "SingleLinkedList.h"
-#include <stdexcept>
+#ifndef SINGLE_LINKED_LIST_H
+#define SINGLE_LINKED_LIST_H
+
+#include <stddef.h> // For size_t
 
 template <typename Item_Type>
-Single_Linked_List<Item_Type>::Single_Linked_List() : head(nullptr), tail(nullptr), num_items(0) {}
+class Single_Linked_List {
+public:
+    // Constructor
+    Single_Linked_List();
 
-template <typename Item_Type>
-Single_Linked_List<Item_Type>::~Single_Linked_List() {
-    clear();
-}
+    // Destructor
+    ~Single_Linked_List();
 
-template <typename Item_Type>
-void Single_Linked_List<Item_Type>::clear() {
-    while (head != nullptr) {
-        Node* old_head = head;
-        head = head->next;
-        delete old_head;
-    }
-    tail = nullptr;
-    num_items = 0;
-}
 
-// Implement other member functions here
+    // Member functions
+    void push_front(const Item_Type& item);
+    void push_back(const Item_Type& item);
+    void pop_front();
+    void pop_back();
+    Item_Type& front();
+    Item_Type& back();
+    bool empty() const;
+    void insert(size_t index, const Item_Type& item);
+    bool remove(size_t index);
+    size_t find(const Item_Type& item) const;
 
-template <typename Item_Type>
-void Single_Linked_List<Item_Type>::push_front(const Item_Type& item) {
-    Node* new_node = new Node(item, head);
-    head = new_node;
-    if (tail == nullptr) {
-        tail = head;
-    }
-    num_items++;
-}
+private:
+    // Internal struct for list nodes
+    struct Node {
+        Item_Type data;
+        Node* next;
+        Node(const Item_Type& data_item, Node* next_ptr = nullptr) : data(data_item), next(next_ptr) {}
+    };
 
+    Node* head;
+    Node* tail;
+    size_t num_items;
+
+    // Utility functions
+    void clear();
+};
+
+#endif // SINGLE_LINKED_LIST_H
